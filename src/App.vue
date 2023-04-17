@@ -2,7 +2,7 @@
 
   <div class="container">
 
-    <AppHeader title="Task Tracker" />
+    <AppHeader @toogle-add-task="toogleAddTask" title="Task Tracker" />
     <div>
         <AddTask v-if="showAddTask" @add-task="addTask"  />
     </div>
@@ -55,6 +55,11 @@ export default {
     addTask(task){
       this.tasks = [...this.tasks, task]
 
+    },
+
+    //function to show new task form
+    toogleAddTask() {
+      this.showAddTask = !this.showAddTask
     }
   },
 
