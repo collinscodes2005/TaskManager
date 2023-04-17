@@ -2,7 +2,7 @@
 
   <div class="container">
 
-    <AppHeader @toogle-add-task="toogleAddTask" title="Task Tracker" />
+    <AppHeader @toogle-add-task="toogleAddTask" title="Task Tracker" :showAddTask="showAddTask" />
     <div>
         <AddTask v-if="showAddTask" @add-task="addTask"  />
     </div>

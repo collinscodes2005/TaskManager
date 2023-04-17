@@ -1,5 +1,5 @@
 <template>
-    <button  :style="{background: color}" class="btn">{{ text }}</button>
+    <button @click="onClick" style="{background: color}" class="btn">{{ text }}</button>
 </template>
 <script>
 export default {
@@ -7,8 +7,8 @@ export default {
     props: ['text', 'color'],
 
     methods : {
-        onclick() {
-            this.$emit('toogle-add-task')     
+        onClick() {
+            this.$emit('btn-click')     
         }
     }
 }

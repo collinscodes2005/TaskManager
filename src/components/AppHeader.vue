@@ -5,20 +5,24 @@
         <h1> {{title}} </h1>
    
 
-         <newButton  @toogle-add-task="$emit('toogle-add-task')" text="Add Task" color="blue" /> 
+         <newButton  @btn-click="$emit('toogle-add-task')" :text="showAddTask ? 'Close' :  'Add Task' " :color="showAddTask ? 'red' : 'green' " /> 
     <!-- <newButton text="Delete Task" color="red" /> -->
 
     </header>
 
 </template>
 
-<script>
+<script> 
 
 import newButton from './Button'
 
 export default {
     name: 'AppHeader', 
-    props: ['title'],
+    props: {
+        title : String,
+        showAddTask : Boolean
+
+    },
     components:{ 
         newButton
     },
