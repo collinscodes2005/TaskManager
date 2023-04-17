@@ -19,7 +19,7 @@ export default {
         singleTask
     },
     
-    emits : ['delete-task']
+    emits : ['delete-task', 'toogle-reminder']
 
     
 }
