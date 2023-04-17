@@ -3,8 +3,9 @@
   <div class="container">
 
     <AppHeader title="Task Tracker" />
-
-    <AddTask />
+    <div>
+        <AddTask v-if="showAddTask" @add-task="addTask"  />
+    </div>
 
     <TaskList @toogle-reminder="toogleReminder" @delete-task="deleteTask" :tasks="tasks" />
 
@@ -31,7 +32,8 @@ export default {
 
   data() {
     return { 
-      tasks : []
+      tasks : [],
+      showAddTask : false,
     }
   },
   methods : {
@@ -47,8 +49,13 @@ export default {
       this.tasks = this.tasks.map((task) => 
         task.id === id ? {...task, reminder: !task.reminder} : task)
 
-    }
+    },
+ 
+    //function to add a new task 
+    addTask(task){
+      this.tasks = [...this.tasks, task]
 
+    }
   },
 
   created(){

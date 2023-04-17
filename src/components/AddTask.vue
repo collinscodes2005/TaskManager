@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 export default {
     name : 'AddTask',
 
@@ -36,7 +37,34 @@ export default {
 
         methods : {
 
-        }
+            //method handling the form's submission
+            onSubmit(e) {
+                e.preventDefault()
+
+                //validating the form 
+                if(!this.text){
+                    alert("Please Add a Task")
+                    return
+                }
+
+                //creating the newTask if the if statement passes 
+                 const newTask = {
+                    id : Math.floor(Math.random() * 1000),
+                    text : this.text ,
+                    reminder : this.reminder,
+                }
+                
+
+
+                this.$emit('add-task', newTask)
+
+
+                this.id = ' '
+                this.text = ' '
+                this.reminder = false
+            }
+
+        } 
     
 }
 

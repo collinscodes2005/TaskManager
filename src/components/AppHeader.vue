@@ -5,7 +5,7 @@
         <h1> {{title}} </h1>
    
 
-         <newButton text="Add Task" color="blue" /> 
+         <newButton  @toogle-add-task="$emit('toogle-add-task')" text="Add Task" color="blue" /> 
     <!-- <newButton text="Delete Task" color="red" /> -->
 
     </header>
