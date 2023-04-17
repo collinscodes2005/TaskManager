@@ -1,12 +1,14 @@
 <template>
+
+
     <header>
         <h1> {{title}} </h1>
-    </header>
-
-    <newButton text="Add Task" color="blue" /> 
-    <newButton text="Delete Task" color="red" />
-
    
+
+         <newButton text="Add Task" color="blue" /> 
+    <!-- <newButton text="Delete Task" color="red" /> -->
+
+    </header>
 
 </template>
 

@@ -1,7 +1,7 @@
 <template>
     <div :key="task.id" v-for="task in tasks">
         
-        <singleTask @delete-task="$emit('delete-task', task.id)" :task="task" />
+        <singleTask @toogle-reminder="$emit('toogle-reminder', task.id)" @delete-task="$emit('delete-task', task.id)" :task="task" />
 
     </div>
 </template>

@@ -4,7 +4,9 @@
 
     <AppHeader title="Task Tracker" />
 
-    <TaskList  @delete-task="deleteTask" :tasks="tasks" />
+    <AddTask />
+
+    <TaskList @toogle-reminder="toogleReminder" @delete-task="deleteTask" :tasks="tasks" />
 
 </div>
 </template>
@@ -15,6 +17,7 @@
 //import AppHeader from AppHeader 
 import AppHeader from './components/AppHeader'
 import TaskList from './components/Tasks'
+import AddTask from './components/AddTask'
 
 //exporting defaults 
 export default {
@@ -22,6 +25,7 @@ export default {
   components: {
     AppHeader,
     TaskList,
+    AddTask,
 
   },
 
@@ -37,6 +41,13 @@ export default {
         this.tasks = this.tasks.filter((task) => task.id !== id)
        console.log(id)
     },
+
+    //method to toggle the reminder : 
+    toogleReminder(id){
+      this.tasks = this.tasks.map((task) => 
+        task.id === id ? {...task, reminder: !task.reminder} : task)
+
+    }
 
   },
 
@@ -79,7 +90,7 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 .container {
-  max-width: 500px;
+  width: 90%;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
