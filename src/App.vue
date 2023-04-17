@@ -4,12 +4,13 @@
 
     <AppHeader title="Task Tracker" />
 
-    <TaskList :tasks="tasks" />
+    <TaskList  @delete-task="deleteTask" :tasks="tasks" />
 
 </div>
 </template>
 
-<script>
+
+<script> 
 
 //import AppHeader from AppHeader 
 import AppHeader from './components/AppHeader'
@@ -28,6 +29,15 @@ export default {
     return { 
       tasks : []
     }
+  },
+  methods : {
+
+    //defining methods in my app :
+    deleteTask(id){
+        this.tasks = this.tasks.filter((task) => task.id !== id)
+       console.log(id)
+    },
+
   },
 
   created(){

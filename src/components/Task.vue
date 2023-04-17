@@ -10,17 +10,25 @@
 
 <script>
 export default {
+
+    //name of component
     name : 'singleTask',
+
+    //props 
     props : {
         task : Object
     },
 
+    //methods 
+
     methods : {
         onDelete(id){
-            console.log(id)
+            this.$emit('delete-task', id)
         }
     }
 }
+
+
 </script>
 <style>
 .task{
