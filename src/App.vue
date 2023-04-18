@@ -14,9 +14,6 @@
 
 <script> 
 
-///
-
-
 //import AppHeader from AppHeader 
 import AppHeader from './components/AppHeader'
 import TaskList from './components/Tasks'
@@ -25,6 +22,8 @@ import AddTask from './components/AddTask'
 //exporting defaults 
 export default {
   name: 'App',
+
+  //my App components 
   components: {
     AppHeader,
     TaskList,
@@ -32,17 +31,28 @@ export default {
 
   },
 
+  //data for stateManagement
   data() {
     return { 
       tasks : [],
       showAddTask : false,
     }
+
+
   },
   methods : {
 
     //defining methods in my app :
-    deleteTask(id){
-        this.tasks = this.tasks.filter((task) => task.id !== id)
+    async deleteTask(id){
+        const res = await fetch(`${this.apiUrl}/tasks/${id}/delete`,
+        {
+          method : 'DELETE',
+
+        })
+
+        res.status === 204 ? ( this.tasks = this.tasks.filter((task) => task.id !== id)) : 
+        alert('Error deleting task')
+       
        console.log(id)
     },
 
@@ -54,8 +64,23 @@ export default {
     },
  
     //function to add a new task 
-    addTask(task){
-      this.tasks = [...this.tasks, task]
+    async addTask(task){
+
+      const res = await fetch(`${this.apiUrl}/tasks/`, {
+        method: 'POST',
+        headers : { 
+          'Content-type' : 'application/json',
+        },
+          body : JSON.stringify(task),
+        
+
+       
+      })
+
+      const data = res.json()
+
+      this.tasks = [...this.tasks, data]
+      //this.tasks = [...this.tasks, task]
 
     },
 
@@ -83,10 +108,8 @@ export default {
     return process.env.VUE_APP_API_URL;
   }
 },
-
-
-
 }
+
 
 </script>
 

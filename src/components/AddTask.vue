@@ -29,6 +29,7 @@ export default {
 
     data() { 
         return {
+            id : '',
             text : '',
             day : '',
             reminder : false
@@ -49,11 +50,12 @@ export default {
 
                 //creating the newTask if the if statement passes 
                  const newTask = {
-                    id : Math.floor(Math.random() * 1000),
+                    id : '',
                     text : this.text ,
                     reminder : this.reminder,
+                    day: this.day,
                 }
-                
+
 
 
                 this.$emit('add-task', newTask)
@@ -62,6 +64,8 @@ export default {
                 this.id = ' '
                 this.text = ' '
                 this.reminder = false
+
+                
             }
 
         } 
