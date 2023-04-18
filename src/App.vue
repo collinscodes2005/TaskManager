@@ -60,34 +60,22 @@ export default {
     //function to show new task form
     toogleAddTask() {
       this.showAddTask = !this.showAddTask
-    }
-  },
+    },
 
-  created(){
-    this.tasks = [
-      {
-        id : 1,
-        text : "Doctos appointment",
-        day : "March 1st at 2pm",
-        reminder : true,
-      },
-      {
-        id : 2,
-        text : "Lecturers appointment",
-        day : "March 1st at 2pm",
-        reminder : true,
-      },
-      {
-        id : 3,
-        text : "Bank appointment",
-        day : "March 1st at 2pm",
-        reminder : true,
-      },
-    ]
+    async fetchEmployees(){
+      const res = await fetch('http://127.0.0.1:8000/tasks/')
+      const data =  await res.json()
+
+      return data
+    }
+  }, 
+
+
+  async created(){
+    this.tasks = await this.fetchEmployees()
 
   }
 }
-
 
 </script>
 
@@ -110,6 +98,7 @@ body {
   padding: 30px;
   border-radius: 5px;
 }
+
 .btn {
   display: inline-block;
   background: #000;
