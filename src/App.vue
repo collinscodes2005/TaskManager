@@ -12,8 +12,10 @@
 </div>
 </template>
 
-
 <script> 
+
+///
+
 
 //import AppHeader from AppHeader 
 import AppHeader from './components/AppHeader'
@@ -62,19 +64,28 @@ export default {
       this.showAddTask = !this.showAddTask
     },
 
+    //function to fetch employees
     async fetchEmployees(){
-      const res = await fetch('http://127.0.0.1:8000/tasks/')
+      const res = await fetch(`${this.apiUrl}/tasks/`)
       const data =  await res.json()
 
       return data
     }
   }, 
 
-
   async created(){
     this.tasks = await this.fetchEmployees()
 
+  },
+
+  computed: {
+  apiUrl() {
+    return process.env.VUE_APP_API_URL;
   }
+},
+
+
+
 }
 
 </script>
