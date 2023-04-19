@@ -43,6 +43,8 @@ export default {
   methods : {
 
     //defining methods in my app :
+
+    //method to delete a particular task 
     async deleteTask(id){
         const res = await fetch(`${this.apiUrl}/tasks/${id}/delete`,
         {
@@ -72,9 +74,7 @@ export default {
           'Content-type' : 'application/json',
         },
           body : JSON.stringify(task),
-        
-
-       
+             
       })
 
       const data = res.json()
