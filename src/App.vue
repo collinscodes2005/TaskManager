@@ -19,6 +19,7 @@ import AppHeader from './components/AppHeader'
 import TaskList from './components/Tasks'
 import AddTask from './components/AddTask'
 
+
 //exporting defaults 
 export default {
   name: 'App',
@@ -37,8 +38,6 @@ export default {
       tasks : [],
       showAddTask : false,
     }
-
-
   },
   methods : {
 
@@ -77,7 +76,7 @@ export default {
              
       })
 
-      const data = res.json()
+      const data = await res.json()
 
       this.tasks = [...this.tasks, data]
       //this.tasks = [...this.tasks, task]
