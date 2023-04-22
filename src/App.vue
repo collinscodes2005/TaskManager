@@ -58,11 +58,27 @@ export default {
     },
 
     //method to toggle the reminder : 
-    toogleReminder(id){
-      this.tasks = this.tasks.map((task) => 
-        task.id === id ? {...task, reminder: !task.reminder} : task)
+    async toogleReminder(id){
+      const taskToUpdate = this.tasks.find(task => id === task.id);
+      const updatedTask = {...taskToUpdate, reminder: !taskToUpdate.reminder};
 
-    },
+      const res = await fetch(`${this.apiUrl}/tasks/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-type' : 'application/json'
+        },
+        body: JSON.stringify(updatedTask)
+
+      })
+
+      const data = await res.json()
+
+      this.tasks = this.tasks.map(task => (task.id === id ? data : task))
+      
+       // task.id === id ? {...task, reminder: !task.reminder} : task)
+
+
+    }, 
  
     //function to add a new task 
     async addTask(task){
